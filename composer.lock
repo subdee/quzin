@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4b57f6450c24ab29623ffc587a5de2b5",
-    "content-hash": "1c5af801477c9c1a9b7089b901d2a2d6",
+    "hash": "894a6f7942f117465d945c3ee8aeae07",
+    "content-hash": "3b74d76500bbe29c7f3cb88928d1678f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1252,6 +1252,49 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2016-09-23 18:09:57"
+        },
+        {
+            "name": "subdee/lcn-weather-forecast-bundle",
+            "version": "v1.0.7",
+            "target-dir": "Lcn/WeatherForecastBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/subdee/LcnWeatherForecastBundle.git",
+                "reference": "ad97d18e9002f30d66ed765a0cea6126833eef54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/subdee/LcnWeatherForecastBundle/zipball/ad97d18e9002f30d66ed765a0cea6126833eef54",
+                "reference": "ad97d18e9002f30d66ed765a0cea6126833eef54",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Lcn\\WeatherForecastBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Fischer-Maeck",
+                    "email": "info@jonasfischer.net"
+                }
+            ],
+            "description": "Integrate Weather Forecasts by Forecast.io into your Symfony 2 projects. With API request normalization and caching.",
+            "keywords": [
+                "forecast.io",
+                "symfony 2"
+            ],
+            "time": "2016-10-15 14:41:17"
         },
         {
             "name": "swiftmailer/swiftmailer",

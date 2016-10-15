@@ -1,9 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/weather-icons/css/weather-icons.min.css') }}">
+{% endblock %}
+
 {% block body %}
     <div class="row">
-        <div class="col-sm-3">
-            Hello
+        <div class="col-sm-3 text-sm-center">
+            <i class="wi wi-{{  forecast.icon }} large-icon"></i>
+            &nbsp;&nbsp;
+            <span class="text-2x {% if forecast.temperature < 10 %}blue{% elseif forecast.temperature > 30 %}red{% else %}green{% endif %}">
+                {{ forecast.temperature|round }}&deg;
+            </span>
+            <p>{{  forecast.summary }}</p>
         </div>
     </div>
 {% endblock %}
