@@ -1,18 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/vendor/weather-icons/css/weather-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
 {% endblock %}
 
 {% block body %}
     <div class="row">
         <div class="col-sm-3 text-sm-center">
-            <i class="wi wi-{{  forecast.icon }} large-icon"></i>
-            &nbsp;&nbsp;
-            <span class="text-2x {% if forecast.temperature < 10 %}blue{% elseif forecast.temperature > 30 %}red{% else %}green{% endif %}">
-                {{ forecast.temperature|round }}&deg;
-            </span>
-            <p>{{  forecast.summary }}</p>
+            <div class="card">
+                <h4 class="card-title">
+                    {% trans %}Weather{% endtrans %}
+                </h4>
+                <div class="card-block">
+                    <canvas id="weather-icon" width="96" height="96" style="vertical-align: top"></canvas>
+                    <span class="text-2x {% if forecast.temperature < 10 %}blue{% elseif forecast.temperature > 30 %}red{% else %}green{% endif %}">
+                        {{ forecast.temperature|round }}&deg;
+                    </span>
+                    <p class="card-text">{{ forecast.summary }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 text-sm-center">
+            <div class="card">
+                <h4 class="card-title">
+                    {% trans %}Recipe of the day{% endtrans %}
+                </h4>
+                <div class="card-block">
+                    <p class="card-text">{{ recipe.title }}</p>
+                    <a class="card-link" data-toggle="modal" href="#recipeModal" id="recipeLink">
+                        {% trans %}See the recipe{% endtrans %}
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="recipeModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <iframe width="600" height="400" id="siteFrame"></iframe>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/skycons.js') }}"></script>
+    <script>
+        var skycons = new Skycons({'color': '#3B3738'});
+        skycons.add('weather-icon', '{{ forecast.icon }}');
+        skycons.play();
+
+        $(function () {
+            $('#siteFrame').attr('src', '{{ recipe.link }}');
+        })
+    </script>
 {% endblock %}

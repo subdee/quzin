@@ -1,0 +1,24 @@
+html, body {
+    background-color: #ECECEA;
+    color: #3B3738;
+}
+
+.large-icon {
+    font-size: 3rem;
+}
+
+.text-2x {
+    font-size: 2rem;
+}
+
+.blue {
+    color: #59abe3;
+}
+
+.red {
+    color: #c0392b;
+}
+
+.green {
+    color: #1bbc9b;
+}
