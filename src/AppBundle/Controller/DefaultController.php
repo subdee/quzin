@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use FeedIo\Feed\ItemInterface;
 use Lcn\WeatherForecastBundle\Service\Forecast;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
