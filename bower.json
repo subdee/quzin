@@ -2,7 +2,6 @@
   "name": "quzin",
   "version": "0.0.1",
   "dependencies": {
-    "bootstrap": "4.0",
-    "weather-icons": "2.0"
+    "bootstrap": "4.0"
   }
 }

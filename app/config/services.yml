@@ -13,3 +13,5 @@ services:
           arguments: ["%kernel.cache_dir%"]
           calls:
               - [setNamespace, ['lcn_weather_forecast']]
+  recipefinder:
+          class: AppBundle\Services\RecipeFinder

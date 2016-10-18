@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-block">
+        <canvas id="weather-icon" width="96" height="96" style="vertical-align: top"></canvas>
+        <span class="text-2x
+{% if current.temperature < 10 %}blue{% elseif current.temperature > 30 %}red{% else %}green{% endif %}">
+            {{ current.temperature|round }}&deg;
+        </span>
+        <p class="card-text">{{ forecast.summary }}</p>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script>
+        var skycons = new Skycons({'color': '#3B3738'});
+        skycons.add('weather-icon', '{{ forecast.icon }}');
+        skycons.play();
+    </script>
+{% endblock %}

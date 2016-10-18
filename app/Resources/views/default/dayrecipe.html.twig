@@ -1,0 +1,18 @@
+<div class="card">
+    <h4 class="card-title">
+        {% trans %}Recipe of the day{% endtrans %}
+    </h4>
+    <div class="card-block">
+        <p class="card-text">{{ recipe.title }}</p>
+        <a class="card-link" data-toggle="modal" href="#recipeModal" id="recipeLink">
+            {% trans %}See the recipe{% endtrans %}
+        </a>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('js/skycons.js') }}"></script>
+    <script>
+        $('#siteFrame').attr('src', '{{ recipe.link }}');
+    </script>
+{% endblock %}
