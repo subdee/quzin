@@ -1,0 +1,13 @@
+<div class="card">
+    <h4 class="card-header">
+        {% trans %}Seasonal items{% endtrans %}
+    </h4>
+    <div class="card-block">
+        <p class="card-text">
+            {% for type, items in seasonalItems %}
+        <h5>{{ type|typeText(true)|trans }}</h5>
+        <p>{{ items|join(', ') }}</p>
+        {% endfor %}
+        </p>
+    </div>
+</div>

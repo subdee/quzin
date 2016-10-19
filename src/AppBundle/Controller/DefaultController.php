@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Item;
 use Lcn\WeatherForecastBundle\Service\Forecast;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,10 +22,23 @@ class DefaultController extends Controller
         $recipeFinder = $this->container->get('recipefinder');
         $recipe = $recipeFinder->getRandom();
 
+        $seasonalItems = $this->getDoctrine()->getRepository('AppBundle:Seasonal')->findBy([
+            'month' => date('n')
+        ]);
+        $items = [Item::TYPE_VEGETABLE => [], Item::TYPE_FRUIT => [], Item::TYPE_HERB => [], Item::TYPE_NUT => []];
+        foreach ($seasonalItems as $seasonalItem) {
+            $items[$seasonalItem->getItem()->getType()][] = $seasonalItem->getItem()->getName();
+        }
+        foreach ($items as $type => $subItems) {
+            asort($subItems);
+            $items[$type] = $subItems;
+        }
+
         return $this->render('default/index.html.twig', [
             'current' => $forecastCurrent,
             'forecast' => $forecastForDay,
-            'recipe' => $recipe
+            'recipe' => $recipe,
+            'seasonalItems' => $items
         ]);
     }
 
@@ -54,6 +68,28 @@ class DefaultController extends Controller
 
         return $this->render('default/dayrecipe.html.twig', [
             'recipe' => $recipe
+        ]);
+    }
+
+    /**
+     * @Route("/seasonal", name="seasonal")
+     */
+    public function seasonalAction()
+    {
+        $seasonalItems = $this->getDoctrine()->getRepository('AppBundle:Seasonal')->findBy([
+            'month' => date('n')
+        ]);
+        $items = [Item::TYPE_VEGETABLE => [], Item::TYPE_FRUIT => [], Item::TYPE_HERB => [], Item::TYPE_NUT => []];
+        foreach ($seasonalItems as $seasonalItem) {
+            $items[$seasonalItem->getItem()->getType()][] = $seasonalItem->getItem()->getName();
+        }
+        foreach ($items as $type => $subItems) {
+            asort($subItems);
+            $items[$type] = $subItems;
+        }
+
+        return $this->render('default/seasonal.html.twig', [
+            'seasonalItems' => $items
         ]);
     }
 }

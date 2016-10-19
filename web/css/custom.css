@@ -22,3 +22,7 @@ html, body {
 .green {
     color: #1bbc9b;
 }
+
+.text-small {
+    font-size: 0.8em;
+}

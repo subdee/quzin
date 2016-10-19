@@ -15,3 +15,8 @@ services:
               - [setNamespace, ['lcn_weather_forecast']]
   recipefinder:
           class: AppBundle\Services\RecipeFinder
+  statictranslator:
+          class: AppBundle\Helpers\StaticTranslatorExtension
+          public: false
+          tags:
+              - { name: twig.extension }

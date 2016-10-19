@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
-{% endblock %}
-
 {% block body %}
     <div class="row">
         <div class="col-sm-3 text-sm-center" id="weather">
@@ -11,6 +7,11 @@
         </div>
         <div class="col-sm-9 text-sm-center" id="dailyrecipe">
             {{ include(':default:dayrecipe.html.twig') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 text-sm-center text-small" id="seasonal">
+            {{ include(':default:seasonal.html.twig') }}
         </div>
     </div>
 
@@ -38,6 +39,9 @@
             }, 3600000);
             setInterval(function () {
                 $('#dailyrecipe').load('{{ path('dailyRecipe') }}')
+            }, 86400000);
+            setInterval(function () {
+                $('#seasonal').load('{{ path('seasonal') }}')
             }, 86400000);
         })
     </script>
