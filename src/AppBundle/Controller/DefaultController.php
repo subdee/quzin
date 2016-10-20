@@ -3,9 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Item;
+use AppBundle\Entity\Recipe;
 use Lcn\WeatherForecastBundle\Service\Forecast;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -53,6 +56,32 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/saveRecipe", name="saveRecipe")
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function saveRecipeAction(Request $request)
+    {
+        $title = $request->request->get('title');
+        $link = $request->request->get('link');
+
+        if ($title !== '' && $link !== '') {
+            $recipe = new Recipe();
+            $recipe->setTitle(urldecode($title));
+            $recipe->setLink($link);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($recipe);
+            $em->flush();
+
+            return new JsonResponse(['success' => true]);
+        }
+
+        return new JsonResponse(['success' => false]);
+    }
+
     private function getWeather()
     {
         /** @var Forecast $forecast */
@@ -72,7 +101,17 @@ class DefaultController extends Controller
     private function getRecipe()
     {
         $recipeFinder = $this->container->get('recipefinder');
-        return $recipeFinder->getRandom();
+        $recipe = $recipeFinder->getRandom();
+        $recipe['isFavorite'] = false;
+
+        $saved = $this->getDoctrine()->getRepository('AppBundle:Recipe')->findOneBy([
+            'title' => $recipe['title']
+        ]);
+        if ($saved !== null) {
+            $recipe['isFavorite'] = true;
+        }
+
+        return $recipe;
     }
 
     private function getSeasonalItems()

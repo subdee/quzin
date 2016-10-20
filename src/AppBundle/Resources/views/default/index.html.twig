@@ -14,26 +14,11 @@
             {{ include('@App/default/seasonal.html.twig') }}
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="recipeModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <iframe width="600" height="400" id="siteFrame"></iframe>
-            </div>
-        </div>
-    </div>
 {% endblock %}
 
-{% block javascripts %}
+{% block extrascripts %}
     <script>
-        var skycons = new Skycons({'color': '#3B3738'});
-        skycons.add('weather-icon', '{{ forecast.icon }}');
-        skycons.play();
-
         $(function () {
-            $('#siteFrame').attr('src', '{{ recipe.link }}');
-
             setInterval(function () {
                 $('#weather').load('{{ path('weather') }}')
             }, 3600000);
