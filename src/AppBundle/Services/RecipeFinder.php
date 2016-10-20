@@ -9,10 +9,9 @@ class RecipeFinder
     /** @var  Twitter */
     private $twitter;
 
-    public function __construct()
+    public function __construct(Twitter $twitter)
     {
-        $this->twitter = new Twitter('lHFaBe66kfolnTLGPCC5oSAUR', '79LB5xOJpPS7j7VjPdyZS5qrrQSFW52lYuclbAtPlCwv3TNed1',
-            '164764971-9zZZ6AO5w2WXBwVFArkkTloZXr6uEVAaWMmOfRZm', 'Q8FTF0p7oqIOPjwz4WEMcwMdXRJJEmgJ7LJ7kUlsZAYZ3');
+        $this->twitter = $twitter;
     }
 
     public function getRandom()

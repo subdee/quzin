@@ -14,31 +14,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        /** @var Forecast $forecast */
-        $forecast = $this->container->get('lcn.weather_forecast');
-        $forecastCurrent = $forecast->getForCurrentHour(52.067448, 4.403103);
-        $forecastForDay = $forecast->getForToday(52.067448, 4.403103);
-
-        $recipeFinder = $this->container->get('recipefinder');
-        $recipe = $recipeFinder->getRandom();
-
-        $seasonalItems = $this->getDoctrine()->getRepository('AppBundle:Seasonal')->findBy([
-            'month' => date('n')
-        ]);
-        $items = [Item::TYPE_VEGETABLE => [], Item::TYPE_FRUIT => [], Item::TYPE_HERB => [], Item::TYPE_NUT => []];
-        foreach ($seasonalItems as $seasonalItem) {
-            $items[$seasonalItem->getItem()->getType()][] = $seasonalItem->getItem()->getName();
-        }
-        foreach ($items as $type => $subItems) {
-            asort($subItems);
-            $items[$type] = $subItems;
-        }
-
-        return $this->render('default/index.html.twig', [
-            'current' => $forecastCurrent,
-            'forecast' => $forecastForDay,
-            'recipe' => $recipe,
-            'seasonalItems' => $items
+        return $this->render('AppBundle:default:index.html.twig', [
+            'current' => $this->getWeather()['current'],
+            'forecast' => $this->getWeather()['forecast'],
+            'recipe' => $this->getRecipe(),
+            'seasonalItems' => $this->getSeasonalItems()
         ]);
     }
 
@@ -47,14 +27,9 @@ class DefaultController extends Controller
      */
     public function weatherAction()
     {
-        /** @var Forecast $forecast */
-        $forecast = $this->container->get('lcn.weather_forecast');
-        $forecastCurrent = $forecast->getForCurrentHour(52.067448, 4.403103);
-        $forecastForDay = $forecast->getForToday(52.067448, 4.403103);
-
-        return $this->render('default/weather.html.twig', [
-            'current' => $forecastCurrent,
-            'forecast' => $forecastForDay
+        return $this->render('AppBundle:default:weather.html.twig', [
+            'current' => $this->getWeather()['current'],
+            'forecast' => $this->getWeather()['forecast'],
         ]);
     }
 
@@ -63,11 +38,8 @@ class DefaultController extends Controller
      */
     public function dailyRecipeAction()
     {
-        $recipeFinder = $this->container->get('recipefinder');
-        $recipe = $recipeFinder->getRandom();
-
-        return $this->render('default/dayrecipe.html.twig', [
-            'recipe' => $recipe
+        return $this->render('AppBundle:default:dayrecipe.html.twig', [
+            'recipe' => $this->getRecipe(),
         ]);
     }
 
@@ -75,6 +47,35 @@ class DefaultController extends Controller
      * @Route("/seasonal", name="seasonal")
      */
     public function seasonalAction()
+    {
+        return $this->render('AppBundle:default:seasonal.html.twig', [
+            'seasonalItems' => $this->getSeasonalItems()
+        ]);
+    }
+
+    private function getWeather()
+    {
+        /** @var Forecast $forecast */
+        $forecast = $this->container->get('lcn.weather_forecast');
+        $forecastCurrent = $forecast->getForCurrentHour(
+            $this->getParameter('location.latitude'),
+            $this->getParameter('location.longitude')
+        );
+        $forecastForDay = $forecast->getForToday(
+            $this->getParameter('location.latitude'),
+            $this->getParameter('location.longitude')
+        );
+
+        return ['current' => $forecastCurrent, 'forecast' => $forecastForDay];
+    }
+
+    private function getRecipe()
+    {
+        $recipeFinder = $this->container->get('recipefinder');
+        return $recipeFinder->getRandom();
+    }
+
+    private function getSeasonalItems()
     {
         $seasonalItems = $this->getDoctrine()->getRepository('AppBundle:Seasonal')->findBy([
             'month' => date('n')
@@ -88,8 +89,6 @@ class DefaultController extends Controller
             $items[$type] = $subItems;
         }
 
-        return $this->render('default/seasonal.html.twig', [
-            'seasonalItems' => $items
-        ]);
+        return $items;
     }
 }

@@ -1,17 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
     <div class="row">
         <div class="col-sm-3 text-sm-center" id="weather">
-            {{ include(':default:weather.html.twig') }}
+            {{ include('@App/default/weather.html.twig') }}
         </div>
         <div class="col-sm-9 text-sm-center" id="dailyrecipe">
-            {{ include(':default:dayrecipe.html.twig') }}
+            {{ include('@App/default/dayrecipe.html.twig') }}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4 text-sm-center text-small" id="seasonal">
-            {{ include(':default:seasonal.html.twig') }}
+            {{ include('@App/default/seasonal.html.twig') }}
         </div>
     </div>
 

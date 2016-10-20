@@ -1,0 +1,26 @@
+parameters:
+  lcn.weather_forecast_provider.forecast_io.api_token: 5cc8dc652542c04e6c0ea0e08e0bef72
+  lcn.weather_forecast_provider.forecast_io.lang: el
+  twitterclient.consumer_key: lHFaBe66kfolnTLGPCC5oSAUR
+  twitterclient.consumer_secret: 79LB5xOJpPS7j7VjPdyZS5qrrQSFW52lYuclbAtPlCwv3TNed1
+  twitterclient.access_token: 164764971-9zZZ6AO5w2WXBwVFArkkTloZXr6uEVAaWMmOfRZm
+  twitterclient.access_secret: Q8FTF0p7oqIOPjwz4WEMcwMdXRJJEmgJ7LJ7kUlsZAYZ3
+
+services:
+  lcn.weather_forecast.cache:
+    class: Doctrine\Common\Cache\PhpFileCache
+    arguments: ["%kernel.cache_dir%"]
+    calls:
+        - [setNamespace, ['lcn_weather_forecast']]
+  twitterclient:
+    class: Endroid\Twitter\Twitter
+    arguments: ['%twitterclient.consumer_key%', '%twitterclient.consumer_secret%', '%twitterclient.access_token%', '%twitterclient.access_secret%']
+    public: false
+  recipefinder:
+    class: AppBundle\Services\RecipeFinder
+    arguments: ['@twitterclient']
+  statictranslator:
+    class: AppBundle\Helpers\StaticTranslatorExtension
+    public: false
+    tags:
+      - { name: twig.extension }
