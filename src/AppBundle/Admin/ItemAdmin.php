@@ -8,14 +8,14 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Translation\DataCollectorTranslator;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class ItemAdmin extends AbstractAdmin
 {
     protected $translator;
     protected $translationDomain = 'item';
 
-    public function __construct($code, $class, $baseControllerName, DataCollectorTranslator $translator)
+    public function __construct($code, $class, $baseControllerName, TranslatorInterface $translator)
     {
         $this->translator = $translator;
         parent::__construct($code, $class, $baseControllerName);
