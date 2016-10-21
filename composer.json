@@ -32,7 +32,9 @@
     "endroid/twitter": "~1.2",
     "doctrine/doctrine-migrations-bundle": "^1.0",
     "friendsofsymfony/rest-bundle": "^2.1",
-    "twig/extensions": "^1.4"
+    "twig/extensions": "^1.4",
+    "sonata-project/admin-bundle": "^3.9",
+    "sonata-project/doctrine-orm-admin-bundle": "^3.1"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",

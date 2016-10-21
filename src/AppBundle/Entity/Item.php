@@ -54,6 +54,21 @@ class Item
      */
     private $seasonal;
 
+    public function typeText()
+    {
+        switch ($this->type) {
+            case Item::TYPE_VEGETABLE:
+                return 'Vegetable';
+            case Item::TYPE_FRUIT:
+                return 'Fruit';
+            case Item::TYPE_HERB:
+                return 'Herb';
+            case Item::TYPE_NUT:
+                return 'Nut';
+            default:
+                return 'Unknown';
+        }
+    }
 
     /**
      * Get id
