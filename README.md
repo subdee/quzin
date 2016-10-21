@@ -6,7 +6,7 @@ A Symfony project for kitchen dashboard.
 
 ##Wishlist
 
-- Ability to save/favorite recipes
+- ~~Ability to save/favorite recipes~~
 - Manage items
 - Fluid shopping list
 - API for shopping list

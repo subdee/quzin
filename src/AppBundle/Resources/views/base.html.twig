@@ -34,8 +34,9 @@
 </head>
 <body>
 <div class="background"></div>
-<div class="container">
+<div class="container-fluid">
     {% block body %}{% endblock %}
+    {% include '@App/modals.html.twig' %}
 </div>
 {% block extrascripts %}{% endblock %}
 </body>

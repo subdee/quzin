@@ -21,7 +21,8 @@ class DefaultController extends Controller
             'current' => $this->getWeather()['current'],
             'forecast' => $this->getWeather()['forecast'],
             'recipe' => $this->getRecipe(),
-            'seasonalItems' => $this->getSeasonalItems()
+            'seasonalItems' => $this->getSeasonalItems(),
+            'recipeCount' => $this->getRecipeCount()
         ]);
     }
 
@@ -57,6 +58,16 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/recipeList", name="recipeList")
+     */
+    public function recipeListAction()
+    {
+        return $this->render('AppBundle:default:recipelist.html.twig', [
+            'recipeCount' => $this->getRecipeCount()
+        ]);
+    }
+
+    /**
      * @Route("/saveRecipe", name="saveRecipe")
      *
      * @param Request $request
@@ -80,6 +91,17 @@ class DefaultController extends Controller
         }
 
         return new JsonResponse(['success' => false]);
+    }
+
+    /**
+     * @Route("/recipeListItems", name="recipeListItems")
+     */
+    public function recipeListItemsAction()
+    {
+        /** @var Recipe[] $recipes */
+        $recipes = $this->getDoctrine()->getRepository('AppBundle:Recipe')->findBy([], ['savedOn' => 'desc']);
+
+        return $this->render('@App/default/recipelistitems.html.twig', ['recipes' => $recipes]);
     }
 
     private function getWeather()
@@ -129,5 +151,14 @@ class DefaultController extends Controller
         }
 
         return $items;
+    }
+
+    private function getRecipeCount()
+    {
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Recipe');
+        $query = $repo->createQueryBuilder('recipe');
+        $query->select('COUNT(recipe)');
+
+        return $query->getQuery()->getSingleScalarResult();
     }
 }

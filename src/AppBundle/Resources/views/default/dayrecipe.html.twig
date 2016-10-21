@@ -4,37 +4,23 @@
     </h4>
     <div class="card-block">
         <p class="card-text">{{ recipe.title }}</p>
-        <a class="btn btn-sm btn-outline-primary card-link" data-toggle="modal" href="#recipeModal" id="recipeLink"
+        <a class="btn btn-sm btn-warning card-link" href="#" id="recipeReload">
+            {% trans %}Find another{% endtrans %}
+        </a>
+        <a class="btn btn-sm btn-primary card-link" data-toggle="modal" href="#recipeModal" id="recipeLink"
            data-link="{{ recipe.link }}">
             {% trans %}See the recipe{% endtrans %}
         </a>
-        <a class="btn btn-sm btn-success card-link"
+        <a class="btn btn-sm btn-outline-success card-link"
            style="{% if recipe.isFavorite is same as(false) %}display: none;{% endif %}"
            href="#" onclick="return false;" id="recipeSaved">
             {% trans %}I have saved this{% endtrans %}
         </a>
-        <a class="btn btn-sm btn-outline-success card-link"
+        <a class="btn btn-sm btn-success card-link"
            style="{% if recipe.isFavorite is same as(true) %}display: none;{% endif %}"
            href="" id="recipeSave">
             {% trans %}Save this recipe{% endtrans %}
         </a>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="recipeModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div id="loader">
-                    <link rel="stylesheet" href="{{ asset('css/clock.css') }}">
-                    <div class='uil-clock-css' style='transform:scale(0.37);'>
-                        <div class="clock"></div>
-                        <div class="ptr1"></div>
-                        <div class="ptr2"></div>
-                    </div>
-                </div>
-                <iframe width="600" height="400" id="siteFrame" style="display: none;"></iframe>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -49,6 +35,14 @@
                     $('#siteFrame').show();
                 }));
             });
+            $('#recipeReload').on('click', function () {
+                console.log($(this));
+                $(this).prop('disabled', true);
+                $(this).text('{% trans %}Searching{% endtrans %}...');
+                $('#dailyrecipe').load('{{ path('dailyRecipe') }}');
+
+                return false;
+            });
             $('#recipeSave').on('click', function () {
                 $.ajax({
                     url: '{{ path('saveRecipe') }}',
@@ -58,6 +52,7 @@
                         if (data && data.success) {
                             $('#recipeSaved').show();
                             $('#recipeSave').remove();
+                            $('#recipelist').load('{{ path('recipeList') }}')
                         }
                     }
                 });

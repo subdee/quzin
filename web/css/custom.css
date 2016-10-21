@@ -36,3 +36,7 @@ html, body {
 .text-small {
     font-size: 0.8em;
 }
+
+.card {
+    opacity: 0.9;
+}

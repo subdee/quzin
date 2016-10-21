@@ -1,0 +1,8 @@
+# date.el_GR.yml
+diff.ago.year: πριν απο ένα χρόνο|πριν απο %count% χρόνια
+diff.ago.month: πριν απο ένα μήνα|πριν απο %count% μήνες
+diff.ago.day: πριν απο μια ημέρα|πριν απο %count% ημέρες
+diff.ago.hour: πριν απο μια ώρα|πριν απο %count% ώρες
+diff.ago.minute: πριν απο ένα λεπτό|πριν απο %count% λεπτά
+diff.ago.second: πριν απο ένα δευτερόλεπτο|πριν απο %count% δευτερόλεπτα
+diff.empty: Μόλις τώρα

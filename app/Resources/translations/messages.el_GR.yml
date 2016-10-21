@@ -1,7 +1,10 @@
 # messages.el.yml
 Weather: Ο καιρός
 Recipe of the day: Συνταγή της ημέρας
+Find another: Βρες άλλη
+Searching: Ψάχνω
 See the recipe: Δες τη συνταγή
+See your recipes: Δες τις συνταγές σου
 Save this recipe: Κράτα τη!
 I have saved this: Την έχω!
 Seasonal items: Τι είναι εποχής;
@@ -14,3 +17,4 @@ Herb: Μυρωδικό
 Nuts: Ξηροί καρποί
 Nut: Ξηρός καρπός
 Unknown: Άγνωστο
+'{0} You have no recipes|{1} You have one recipe|]1,Inf[ You have %recipeCount% recipes': '{0} Δεν έχεις συνταγές|{1} Έχεις μία συνταγή|]1,Inf[ Έχεις %recipeCount% συνταγές'

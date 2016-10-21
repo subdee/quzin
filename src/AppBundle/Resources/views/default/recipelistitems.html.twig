@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="row">
+        {% for recipe in recipes %}
+            <p>
+                <a href="{{ recipe.link }}">{{ recipe.title }}</a>
+                <span class="pull-sm-right text-small">{{ recipe.savedOn|time_diff }}</span>
+            </p>
+            <hr>
+        {% endfor %}
+    </div>
+</div>

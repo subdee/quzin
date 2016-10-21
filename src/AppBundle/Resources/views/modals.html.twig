@@ -1,0 +1,37 @@
+{% block modals %}
+    <!-- Modal -->
+    <div class="modal fade" id="recipeModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="loader">
+                    <link rel="stylesheet" href="{{ asset('css/clock.css') }}">
+                    <div class='uil-clock-css' style='transform:scale(0.37);'>
+                        <div class="clock"></div>
+                        <div class="ptr1"></div>
+                        <div class="ptr2"></div>
+                    </div>
+                </div>
+                <iframe width="600" height="400" id="siteFrame" style="display: none;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="recipeListModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="recipelistloader">
+                        <link rel="stylesheet" href="{{ asset('css/clock.css') }}">
+                        <div class='uil-clock-css' style='transform:scale(0.37);'>
+                            <div class="clock"></div>
+                            <div class="ptr1"></div>
+                            <div class="ptr2"></div>
+                        </div>
+                    </div>
+                    <div id="recipeList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

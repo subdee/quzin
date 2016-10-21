@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="recipe")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Recipe
 {
@@ -35,6 +36,29 @@ class Recipe
      */
     private $link;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="saved_on", type="integer")
+     */
+    private $savedOn;
+
+    /**
+     * Sets saved on automatically
+     */
+    public function __construct()
+    {
+        $this->setSavedOn(time());
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function updateSavedOn()
+    {
+        $this->setSavedOn(time());
+    }
 
     /**
      * Get id
@@ -92,6 +116,22 @@ class Recipe
     public function getLink()
     {
         return $this->link;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSavedOn()
+    {
+        return $this->savedOn;
+    }
+
+    /**
+     * @param int $savedOn
+     */
+    public function setSavedOn($savedOn)
+    {
+        $this->savedOn = $savedOn;
     }
 }
 

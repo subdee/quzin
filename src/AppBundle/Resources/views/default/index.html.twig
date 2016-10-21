@@ -5,12 +5,15 @@
         <div class="col-sm-3 text-sm-center" id="weather">
             {{ include('@App/default/weather.html.twig') }}
         </div>
-        <div class="col-sm-9 text-sm-center" id="dailyrecipe">
+        <div class="col-sm-6 text-sm-center" id="dailyrecipe">
             {{ include('@App/default/dayrecipe.html.twig') }}
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4 text-sm-center text-small" id="seasonal">
+        <div class="col-sm-3 text-sm-center" id="recipelist">
+            {{ include('@App/default/recipelist.html.twig') }}
+        </div>
+        <div class="col-sm-3 text-sm-center">
+        </div>
+        <div class="col-sm-6 text-sm-center text-small" id="seasonal">
             {{ include('@App/default/seasonal.html.twig') }}
         </div>
     </div>

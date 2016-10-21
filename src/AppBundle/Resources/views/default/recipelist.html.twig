@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-block">
+        <p class="card-text">
+            {% transchoice recipeCount %}
+            {0} You have no recipes|{1} You have one recipe|]1,Inf[ You have %recipeCount% recipes
+            {% endtranschoice %}
+        </p>
+        <a class="btn btn-sm {% if recipeCount == 0 %} disabled {% endif %} btn-primary card-link"
+           data-toggle="modal" href="#recipeListModal">
+            {% trans %}See your recipes{% endtrans %}
+        </a>
+    </div>
+</div>
+
+{% block extrascripts %}
+    <script>
+        $(function () {
+            $('#recipeListModal').on('show.bs.modal', function () {
+                $.ajax({
+                    url: '{{ path('recipeListItems') }}',
+                    method: 'get',
+                    success: function (data) {
+                        $('#recipelistloader').hide();
+                        $('#recipeList').html(data);
+                    }
+                })
+            });
+        })
+    </script>
+{% endblock %}
