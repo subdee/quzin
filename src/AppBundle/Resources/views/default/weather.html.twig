@@ -1,12 +1,11 @@
 <div class="card">
     <div class="card-block">
-        <p><strong>{{ 'now'|localizeddate('medium') }}</strong></p>
+        <p><strong>{{ 'now'|localizeddate('full', 'none') }}</strong></p>
         <canvas id="weather-icon" width="96" height="96" style="vertical-align: top"></canvas>
-        <span class="text-2x
-{% if current.temperature < 10 %}blue{% elseif current.temperature > 30 %}red{% else %}green{% endif %}">
+        <span class="text-2x {{ current.temperature|tempcolor }}">
                 {{ current.temperature|round }}&deg;
             </span>
-        <p class="card-text">{{ forecast.summary }}</p>
+        <p class="card-text text-small">{{ forecast.summary }}</p>
     </div>
 </div>
 

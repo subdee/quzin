@@ -21,16 +21,40 @@ html, body {
     font-size: 2rem;
 }
 
-.blue {
-    color: #59abe3;
+.frozen-blue {
+    color: #322eff;
 }
 
-.red {
-    color: #c0392b;
+.cold-blue {
+    color: #00b3e8;
+}
+
+.cold-green {
+    color: #00d18a;
 }
 
 .green {
-    color: #1bbc9b;
+    color: #00a30b;
+}
+
+.warm-green {
+    color: #9fcc00;
+}
+
+.warm-yellow {
+    color: #e8c500;
+}
+
+.cold-orange {
+    color: #e8a400;
+}
+
+.warm-orange {
+    color: #ff6917;
+}
+
+.red {
+    color: #d10900;
 }
 
 .text-small {
