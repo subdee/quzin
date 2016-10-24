@@ -16,6 +16,7 @@
     <script>
         $(function () {
             $('#recipeListModal').on('show.bs.modal', function () {
+                $('#recipeList').html('');
                 $.ajax({
                     url: '{{ path('recipeListItems') }}',
                     method: 'get',

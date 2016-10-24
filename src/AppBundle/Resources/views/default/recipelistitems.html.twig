@@ -2,10 +2,24 @@
     <div class="row">
         {% for recipe in recipes %}
             <p>
-                <a href="{{ recipe.link }}">{{ recipe.title }}</a>
+                <a href="#" class="recipeListLink" data-link="{{ recipe.link }}">
+                    {{ recipe.title }}
+                </a>
                 <span class="pull-sm-right text-small">{{ recipe.savedOn|time_diff }}</span>
             </p>
             <hr>
         {% endfor %}
     </div>
 </div>
+
+{% block extrascripts %}
+    <script>
+        $(function () {
+            $('a.recipeListLink').on('click', function (event) {
+                var link = $(this).data('link');
+                $('#recipeList').html('<iframe width="100%" height="400" id="siteFrame" src="' + link + '"></iframe>');
+                return false;
+            });
+        })
+    </script>
+{% endblock %}
