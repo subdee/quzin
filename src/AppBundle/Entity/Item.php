@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Item
@@ -158,6 +160,22 @@ class Item
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return ShoppingList
+     */
+    public function getShoppingList()
+    {
+        return $this->shoppingList;
+    }
+
+    /**
+     * @param ShoppingList $shoppingList
+     */
+    public function setShoppingList($shoppingList)
+    {
+        $this->shoppingList = $shoppingList;
     }
 }
 

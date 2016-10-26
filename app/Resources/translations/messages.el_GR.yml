@@ -18,3 +18,7 @@ Nuts: Ξηροί καρποί
 Nut: Ξηρός καρπός
 Unknown: Άγνωστο
 '{0} You have no recipes|{1} You have one recipe|]1,Inf[ You have %recipeCount% recipes': '{0} Δεν έχεις συνταγές|{1} Έχεις μία συνταγή|]1,Inf[ Έχεις %recipeCount% συνταγές'
+Shopping list: Λίστα για τα ψώνια
+'You have 1 item in your list|You have %shoppingListCount% items in your list': '1 αντικείμενο|%shoppingListCount% αντικείμενα'
+See the list: Δες τη λίστα
+Add an item: Προσθήκη

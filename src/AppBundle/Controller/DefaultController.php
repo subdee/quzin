@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Item;
 use AppBundle\Entity\Recipe;
+use AppBundle\Entity\ShoppingList;
 use Lcn\WeatherForecastBundle\Service\Forecast;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +23,8 @@ class DefaultController extends Controller
             'forecast' => $this->getWeather()['forecast'],
             'recipe' => $this->getRecipe(),
             'seasonalItems' => $this->getSeasonalItems(),
-            'recipeCount' => $this->getRecipeCount()
+            'recipeCount' => $this->getRecipeCount(),
+            'shoppingListCount' => $this->getShoppingListCount()
         ]);
     }
 
@@ -104,6 +106,17 @@ class DefaultController extends Controller
         return $this->render('@App/default/recipelistitems.html.twig', ['recipes' => $recipes]);
     }
 
+    /**
+     * @Route("/shoppingListItems", name="shoppingListItems")
+     */
+    public function shoppingListItemsAction()
+    {
+        /** @var ShoppingList[] $shoppingList */
+        $shoppingList = $this->getDoctrine()->getRepository('AppBundle:ShoppingList')->findActiveItemsOrdered();
+
+        return $this->render('@App/default/shoppinglistitems.html.twig', ['shoppingList' => $shoppingList]);
+    }
+
     private function getWeather()
     {
         /** @var Forecast $forecast */
@@ -158,6 +171,16 @@ class DefaultController extends Controller
         $repo = $this->getDoctrine()->getRepository('AppBundle:Recipe');
         $query = $repo->createQueryBuilder('recipe');
         $query->select('COUNT(recipe)');
+
+        return $query->getQuery()->getSingleScalarResult();
+    }
+
+    private function getShoppingListCount()
+    {
+        $repo = $this->getDoctrine()->getRepository('AppBundle:ShoppingList');
+        $query = $repo->createQueryBuilder('shopping_list')
+            ->select('COUNT(shopping_list)')
+            ->where('shopping_list.isBought = 0');
 
         return $query->getQuery()->getSingleScalarResult();
     }
