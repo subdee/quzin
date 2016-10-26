@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Item
  *
  * @ORM\Table(name="item")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ItemRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Item
 {
@@ -50,11 +52,23 @@ class Item
     private $type;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="updated_on", type="integer", nullable=true)
+     */
+    private $updatedOn;
+
+    /**
      * @var Seasonal
      *
      * @ORM\OneToOne(targetEntity="Seasonal", mappedBy="item")
      */
     private $seasonal;
+
+    /**
+     * @var UploadedFile
+     */
+    private $imageFile;
 
     public function typeText()
     {
@@ -70,6 +84,14 @@ class Item
             default:
                 return 'Unknown';
         }
+    }
+
+    /**
+     * Updates the hash value to force the preUpdate and postUpdate events to fire
+     */
+    public function refreshUpdated()
+    {
+        $this->updatedOn = time();
     }
 
     /**
@@ -176,6 +198,38 @@ class Item
     public function setShoppingList($shoppingList)
     {
         $this->shoppingList = $shoppingList;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUpdatedOn()
+    {
+        return $this->updatedOn;
+    }
+
+    /**
+     * @param int $updatedOn
+     */
+    public function setUpdatedOn($updatedOn)
+    {
+        $this->updatedOn = $updatedOn;
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param UploadedFile|null $imageFile
+     */
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
     }
 }
 

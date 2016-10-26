@@ -27,7 +27,7 @@ class ItemAdmin extends AbstractAdmin
             ->add('type', 'choice', [
                 'choices' => $this->getTypesList()
             ])
-            ->add('image', 'file', ['required' => false]);
+            ->add('imageFile', 'file', ['required' => false]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -61,5 +61,31 @@ class ItemAdmin extends AbstractAdmin
             $this->translator->trans(ItemTypeTranslator::translate(Item::TYPE_HERB)) => Item::TYPE_HERB,
             $this->translator->trans(ItemTypeTranslator::translate(Item::TYPE_NUT)) => Item::TYPE_NUT,
         ];
+    }
+
+    /**
+     * @param Item $object
+     */
+    public function prePersist($object)
+    {
+        $this->manageFileUpload($object);
+    }
+
+    /**
+     * @param Item $object
+     */
+    public function preUpdate($object)
+    {
+        $this->manageFileUpload($object);
+    }
+
+    /**
+     * @param Item $object
+     */
+    private function manageFileUpload($object)
+    {
+        if ($object->getImageFile()) {
+            $object->refreshUpdated();
+        }
     }
 }

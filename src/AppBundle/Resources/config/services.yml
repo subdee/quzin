@@ -43,3 +43,9 @@ services:
     arguments: [~, AppBundle\Entity\Item, ~, '@translator']
     tags:
       - { name: sonata.admin, manager_type: orm, label: Item }
+  admin.imagelistener:
+    class: AppBundle\Services\ImageListener
+    arguments: ['@kernel']
+    tags:
+      - {name: doctrine.event_listener, event: prePersist}
+      - {name: doctrine.event_listener, event: preUpdate}
