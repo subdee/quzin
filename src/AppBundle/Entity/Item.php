@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -13,6 +14,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\Table(name="item")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ItemRepository")
  * @ORM\HasLifecycleCallbacks
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Item
 {
@@ -34,6 +37,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Serializer\Expose
      */
     private $name;
 
@@ -41,6 +45,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Serializer\Expose
      */
     private $image;
 
@@ -48,6 +53,7 @@ class Item
      * @var integer
      *
      * @ORM\Column(name="type", type="integer", nullable=false)
+     * @Serializer\Expose
      */
     private $type;
 
@@ -182,22 +188,6 @@ class Item
     public function setType($type)
     {
         $this->type = $type;
-    }
-
-    /**
-     * @return ShoppingList
-     */
-    public function getShoppingList()
-    {
-        return $this->shoppingList;
-    }
-
-    /**
-     * @param ShoppingList $shoppingList
-     */
-    public function setShoppingList($shoppingList)
-    {
-        $this->shoppingList = $shoppingList;
     }
 
     /**

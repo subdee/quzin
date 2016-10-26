@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * ShoppingList
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping\JoinColumn;
  * @ORM\Table(name="shopping_list")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ShoppingListRepository")
  * @ORM\HasLifecycleCallbacks
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class ShoppingList
 {
@@ -34,6 +37,7 @@ class ShoppingList
      * @var int
      *
      * @ORM\Column(name="added_on", type="integer")
+     * @Serializer\Expose
      */
     private $addedOn;
 
@@ -49,6 +53,7 @@ class ShoppingList
      *
      * @ORM\ManyToOne(targetEntity="Item")
      * @JoinColumn(name="item_id", referencedColumnName="id")
+     * @Serializer\Expose
      */
     private $item;
 
