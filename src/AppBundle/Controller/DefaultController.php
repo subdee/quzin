@@ -117,6 +117,17 @@ class DefaultController extends Controller
         return $this->render('@App/default/shoppinglistitems.html.twig', ['shoppingList' => $shoppingList]);
     }
 
+    /**
+     * @Route("/itemsList", name="itemsList")
+     */
+    public function itemsListAction()
+    {
+        /** @var Item[] $items */
+        $items = $this->getDoctrine()->getRepository('AppBundle:Item')->findAllGroupedByType();
+
+        return $this->render('@App/default/shoppinglistadd.html.twig', ['items' => $items]);
+    }
+
     private function getWeather()
     {
         /** @var Forecast $forecast */
@@ -154,9 +165,9 @@ class DefaultController extends Controller
         $seasonalItems = $this->getDoctrine()->getRepository('AppBundle:Seasonal')->findBy([
             'month' => date('n')
         ]);
-        $items = [Item::TYPE_VEGETABLE => [], Item::TYPE_FRUIT => [], Item::TYPE_HERB => [], Item::TYPE_NUT => []];
+        $items = [];
         foreach ($seasonalItems as $seasonalItem) {
-            $items[$seasonalItem->getItem()->getType()][] = $seasonalItem->getItem()->getName();
+            $items[$seasonalItem->getItem()->getType()->getPluralName()][] = $seasonalItem->getItem()->getName();
         }
         foreach ($items as $type => $subItems) {
             asort($subItems);

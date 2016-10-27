@@ -19,11 +19,6 @@ services:
   recipefinder:
     class: AppBundle\Services\RecipeFinder
     arguments: ['@twitterclient']
-  statictranslator:
-    class: AppBundle\Helpers\StaticTranslatorExtension
-    public: false
-    tags:
-      - { name: twig.extension }
   tempcolor:
     class: AppBundle\Helpers\TempColorExtension
     public: false

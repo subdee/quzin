@@ -1,0 +1,19 @@
+<div class="container">
+    {% for category, items in categories %}
+        <div class="row">
+            <h4>{{ category }}</h4>
+            {% for item in items %}
+                <div class="col-xs-2">
+                    {% if item.image %}
+                        <img src="{{ asset('images/items/') ~ item.image }}">
+                    {% else %}
+                        <img src="{{ asset('images/logo-gray.png') }}">
+                    {% endif %}
+                    <p>
+                        <small>{{ item.name }}</small>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>

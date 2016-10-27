@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -19,11 +18,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Item
 {
-    const TYPE_VEGETABLE = 1;
-    const TYPE_FRUIT = 2;
-    const TYPE_HERB = 3;
-    const TYPE_NUT = 4;
-
     /**
      * @var int
      *
@@ -52,8 +46,16 @@ class Item
     /**
      * @var integer
      *
-     * @ORM\Column(name="type", type="integer", nullable=false)
-     * @Serializer\Expose
+     * @ORM\Column(name="type_id", type="integer", nullable=true)
+     */
+    private $typeId;
+
+    /**
+     * @var ItemType
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ItemType", inversedBy="items")
+     * @JoinColumn(name="type_id", referencedColumnName="id")
+     *
      */
     private $type;
 
@@ -75,22 +77,6 @@ class Item
      * @var UploadedFile
      */
     private $imageFile;
-
-    public function typeText()
-    {
-        switch ($this->type) {
-            case Item::TYPE_VEGETABLE:
-                return 'Vegetable';
-            case Item::TYPE_FRUIT:
-                return 'Fruit';
-            case Item::TYPE_HERB:
-                return 'Herb';
-            case Item::TYPE_NUT:
-                return 'Nut';
-            default:
-                return 'Unknown';
-        }
-    }
 
     /**
      * Updates the hash value to force the preUpdate and postUpdate events to fire
@@ -175,7 +161,7 @@ class Item
     }
 
     /**
-     * @return int
+     * @return ItemType
      */
     public function getType()
     {
@@ -183,9 +169,9 @@ class Item
     }
 
     /**
-     * @param int $type
+     * @param ItemType $type
      */
-    public function setType($type)
+    public function setType(ItemType $type)
     {
         $this->type = $type;
     }
@@ -220,6 +206,22 @@ class Item
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTypeId()
+    {
+        return $this->typeId;
+    }
+
+    /**
+     * @param int $typeId
+     */
+    public function setTypeId($typeId)
+    {
+        $this->typeId = $typeId;
     }
 }
 

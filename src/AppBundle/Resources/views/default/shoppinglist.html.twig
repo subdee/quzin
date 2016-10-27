@@ -16,7 +16,8 @@
         </div>
         <hr>
         <div>
-            <a class="btn btn-sm btn-success btn-block card-link" href="#" id="shoppingListAdd">
+            <a class="btn btn-sm btn-success btn-block card-link" data-toggle="modal" href="#shoppingListAddModal"
+               id="shoppingListAdd">
                 {% trans %}Add an item{% endtrans %}
             </a>
         </div>
@@ -35,6 +36,17 @@
                     success: function (data) {
                         $('#shoppingListViewloader').hide();
                         $('#shoppingListView').html(data);
+                    }
+                })
+            });
+            $('#shoppingListAddModal').on('show.bs.modal', function () {
+                $('#shoppingListItemView').html('');
+                $.ajax({
+                    url: '{{ path('itemsList') }}',
+                    method: 'get',
+                    success: function (data) {
+                        $('#shoppingListItemViewloader').hide();
+                        $('#shoppingListItemView').html(data);
                     }
                 })
             });

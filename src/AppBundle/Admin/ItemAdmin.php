@@ -3,7 +3,6 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Item;
-use AppBundle\Helpers\ItemTypeTranslator;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -24,18 +23,16 @@ class ItemAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('name', 'text')
-            ->add('type', 'choice', [
-                'choices' => $this->getTypesList()
+            ->add('type_id', 'entity', [
+                'class' => 'AppBundle:ItemType',
+                'choice_label' => 'name'
             ])
             ->add('imageFile', 'file', ['required' => false]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('name')
-            ->add('type', null, [], 'choice', [
-                'choices' => $this->getTypesList()
-            ]);
+        $datagridMapper->add('name');
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -51,16 +48,6 @@ class ItemAdmin extends AbstractAdmin
     public function toString($object)
     {
         return $object->getName();
-    }
-
-    private function getTypesList()
-    {
-        return [
-            $this->translator->trans(ItemTypeTranslator::translate(Item::TYPE_VEGETABLE)) => Item::TYPE_VEGETABLE,
-            $this->translator->trans(ItemTypeTranslator::translate(Item::TYPE_FRUIT)) => Item::TYPE_FRUIT,
-            $this->translator->trans(ItemTypeTranslator::translate(Item::TYPE_HERB)) => Item::TYPE_HERB,
-            $this->translator->trans(ItemTypeTranslator::translate(Item::TYPE_NUT)) => Item::TYPE_NUT,
-        ];
     }
 
     /**

@@ -3,10 +3,14 @@
 namespace AppBundle\Controller;
 
 
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 
 class ShoppingListController extends FOSRestController
 {
+    /**
+     * @Get("/shoppingList")
+     */
     public function getShoppingListAction()
     {
         $data = $this->getDoctrine()->getRepository('AppBundle:ShoppingList')->findActiveItemsOrdered();
