@@ -73,6 +73,23 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts: [admin]
 
+sensio_framework_extra:
+    view:
+        annotations: true
+
 fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
     routing_loader:
         default_format: json
+
+nelmio_cors:
+    paths:
+        '^/api/':
+            allow_origin: ['*']
+            allow_headers: ['*']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            max_age: 3600

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\ShoppingList;
+
 /**
  * ShoppingListRepository
  *
@@ -10,6 +12,9 @@ namespace AppBundle\Repository;
  */
 class ShoppingListRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return ShoppingList[]
+     */
     public function findActiveItemsOrdered()
     {
         return $this->createQueryBuilder('list')

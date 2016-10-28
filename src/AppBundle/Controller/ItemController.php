@@ -10,9 +10,7 @@ class ItemController extends FOSRestController
     public function getItemsAction()
     {
         $data = $this->getDoctrine()->getRepository('AppBundle:Item')->findAll();
-        $view = $this->view($data, 200)
-            ->setTemplate('AppBundle:Items:getItems.html.twig')
-            ->setTemplateVar('items');
+        $view = $this->view($data, 200);
 
         return $this->handleView($view);
     }
