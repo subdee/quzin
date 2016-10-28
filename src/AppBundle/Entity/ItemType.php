@@ -42,6 +42,11 @@ class ItemType
      */
     private $items;
 
+    public function __toString()
+    {
+        return $this->name ?: '';
+    }
+
     /**
      * Get id
      *

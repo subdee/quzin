@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class ItemAdmin extends AbstractAdmin
+class ItemTypeAdmin extends AbstractAdmin
 {
     protected $translator;
     protected $translationDomain = 'item';
@@ -22,9 +22,7 @@ class ItemAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('name', 'text')
-            ->add('type', 'sonata_type_model')
-            ->add('imageFile', 'file', ['required' => false]);
+        $formMapper->add('name', 'text');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -34,8 +32,7 @@ class ItemAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name')
-            ->add('type', 'string', ['template' => '@App/admin/item_type.html.twig']);
+        $listMapper->addIdentifier('name');
     }
 
     /**
@@ -45,31 +42,5 @@ class ItemAdmin extends AbstractAdmin
     public function toString($object)
     {
         return $object->getName();
-    }
-
-    /**
-     * @param Item $object
-     */
-    public function prePersist($object)
-    {
-        $this->manageFileUpload($object);
-    }
-
-    /**
-     * @param Item $object
-     */
-    public function preUpdate($object)
-    {
-        $this->manageFileUpload($object);
-    }
-
-    /**
-     * @param Item $object
-     */
-    private function manageFileUpload($object)
-    {
-        if ($object->getImageFile()) {
-            $object->refreshUpdated();
-        }
     }
 }

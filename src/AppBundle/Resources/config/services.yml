@@ -33,11 +33,16 @@ services:
     arguments: ['@translator']
     tags:
       - { name: twig.extension }
-  admin.category:
+  admin.item:
     class: AppBundle\Admin\ItemAdmin
     arguments: [~, AppBundle\Entity\Item, ~, '@translator']
     tags:
       - { name: sonata.admin, manager_type: orm, label: Item }
+  admin.itemtype:
+    class: AppBundle\Admin\ItemTypeAdmin
+    arguments: [~, AppBundle\Entity\ItemType, ~, '@translator']
+    tags:
+      - { name: sonata.admin, manager_type: orm, label: Item Type }
   admin.imagelistener:
     class: AppBundle\Services\ImageListener
     arguments: ['@kernel']
