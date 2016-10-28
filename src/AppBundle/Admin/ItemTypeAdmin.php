@@ -2,7 +2,7 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Item;
+use AppBundle\Entity\ItemType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -23,6 +23,7 @@ class ItemTypeAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('name', 'text');
+        $formMapper->add('pluralName', 'text');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -36,7 +37,7 @@ class ItemTypeAdmin extends AbstractAdmin
     }
 
     /**
-     * @param Item $object
+     * @param ItemType $object
      * @return string
      */
     public function toString($object)
