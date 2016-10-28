@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Item;
+
 /**
  * ItemRepository
  *
@@ -12,6 +14,14 @@ class ItemRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findAllGroupedByType()
     {
+        $list = [];
 
+        /** @var Item[] $items */
+        $items = $this->findBy([], ['typeId' => 'asc']);
+        foreach ($items as $item) {
+            $list[$item->getType()->getPluralName()][] = $item;
+        }
+
+        return $list;
     }
 }

@@ -107,6 +107,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/shoppingList", name="shoppingList")
+     */
+    public function shoppingListAction()
+    {
+        return $this->render('@App/default/shoppinglist.html.twig', ['shoppingListCount' => $this->getShoppingListCount()]);
+    }
+
+    /**
      * @Route("/shoppingListItems", name="shoppingListItems")
      */
     public function shoppingListItemsAction()
@@ -123,9 +131,34 @@ class DefaultController extends Controller
     public function itemsListAction()
     {
         /** @var Item[] $items */
-        $items = $this->getDoctrine()->getRepository('AppBundle:Item')->findAllGroupedByType();
+        $types = $this->getDoctrine()->getRepository('AppBundle:Item')->findAllGroupedByType();
+        $list = $this->getDoctrine()->getRepository('AppBundle:ShoppingList')->findActiveItemsOrdered();
+        $shoppingList = [];
+        foreach ($list as $shoppingItem) {
+            $shoppingList[] = $shoppingItem->getItem()->getId();
+        }
 
-        return $this->render('@App/default/shoppinglistadd.html.twig', ['items' => $items]);
+        return $this->render('@App/default/shoppinglistadd.html.twig', ['types' => $types, 'shoppingList' => $shoppingList]);
+    }
+
+    /**
+     * @Route("/addItemToShoppingList/{id}", name="addItemToShoppingList", options={"expose"=true})
+     */
+    public function addItemToShoppingListAction($id)
+    {
+        $item = $this->getDoctrine()->getRepository('AppBundle:Item')->findOneBy(['id' => $id]);
+        if (!$item) {
+            return new JsonResponse(['success' => false]);
+        }
+
+        $shoppingList = new ShoppingList();
+        $shoppingList->setItem($item);
+        $shoppingList->setIsBought(false);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($shoppingList);
+        $entityManager->flush();
+
+        return new JsonResponse(['success' => true]);
     }
 
     private function getWeather()

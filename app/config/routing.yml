@@ -20,3 +20,6 @@ shoppingList:
     type:     rest
     resource: '@AppBundle/Controller/ShoppingListController.php'
     prefix: /api
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

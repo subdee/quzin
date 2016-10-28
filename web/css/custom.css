@@ -64,3 +64,16 @@ html, body {
 .card {
     opacity: 0.9;
 }
+
+.item-to-add {
+    padding-top: 10px;
+}
+
+.item-to-add:not(.added) {
+    cursor: pointer;
+}
+
+.item-to-add.added {
+    background-color: rgba(200, 46, 11, 0.2);
+    border-radius: 10px;
+}
