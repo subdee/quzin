@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Item;
 use AppBundle\Entity\ShoppingList;
 
 /**
@@ -23,5 +24,15 @@ class ShoppingListRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('item.name', 'asc')
             ->getQuery()
             ->getResult();
+    }
+
+    public function findItem(Item $item)
+    {
+        return $this->createQueryBuilder('list')
+            ->where('list.isBought = 0')
+            ->andWhere('list.itemId = :itemId')
+            ->setParameter(':itemId', $item->getId())
+            ->getQuery()
+            ->getSingleResult();
     }
 }
