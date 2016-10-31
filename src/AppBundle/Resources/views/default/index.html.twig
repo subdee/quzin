@@ -28,6 +28,9 @@
             setInterval(function () {
                 $('#weather').load('{{ path('weather') }}')
             }, 3600000);
+            setInterval(function () {
+                $('#shoppinglist').load('{{ path('shoppingList') }}')
+            }, 300000);
             var now = new Date();
             var night = new Date(
                     now.getFullYear(),
