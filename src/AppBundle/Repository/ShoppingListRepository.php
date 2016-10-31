@@ -33,6 +33,6 @@ class ShoppingListRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('list.itemId = :itemId')
             ->setParameter(':itemId', $item->getId())
             ->getQuery()
-            ->getSingleResult();
+            ->getOneOrNullResult();
     }
 }
