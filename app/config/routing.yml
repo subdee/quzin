@@ -16,6 +16,11 @@ items:
     resource: '@AppBundle/Controller/ItemController.php'
     prefix: /api
 
+seasonals:
+    type:     rest
+    resource: '@AppBundle/Controller/SeasonalController.php'
+    prefix: /api
+
 shoppingList:
     type:     rest
     resource: '@AppBundle/Controller/ShoppingListController.php'

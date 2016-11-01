@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class ItemTypeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findUnknownType()
+    {
+        return $this->createQueryBuilder('type')
+            ->where('type.name = :unknown')
+            ->setParameter(':unknown', 'Unknown')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
