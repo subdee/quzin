@@ -2,6 +2,6 @@
   "name": "quzin",
   "version": "0.0.1",
   "dependencies": {
-    "bootstrap": "4.0"
+    "bootstrap": "4.0.0-alpha.5"
   }
 }

@@ -3,7 +3,7 @@
         {% for item in shoppingList %}
             <p>
                 {{ item.item.name }}
-                <span class="pull-sm-right text-small">{{ item.addedOn|time_diff }}</span>
+                <span class="float-sm-right text-small">{{ item.addedOn|time_diff }}</span>
             </p>
         {% endfor %}
     </div>
