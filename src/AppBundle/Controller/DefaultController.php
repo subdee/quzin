@@ -18,14 +18,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:default:index.html.twig', [
-            'current' => $this->getWeather()['current'],
-            'forecast' => $this->getWeather()['forecast'],
-            'recipe' => $this->getRecipe(),
-            'seasonalItems' => $this->getSeasonalItems(),
-            'recipeCount' => $this->getRecipeCount(),
-            'shoppingListCount' => $this->getShoppingListCount()
-        ]);
+        return $this->render('AppBundle:default:index.html.twig');
     }
 
     /**

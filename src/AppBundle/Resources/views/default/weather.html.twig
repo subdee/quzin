@@ -1,13 +1,8 @@
-<div class="card">
-    <div class="card-block">
-        <p><strong>{{ 'now'|localizeddate('full', 'none') }}</strong></p>
-        <canvas id="weather-icon" width="96" height="96" style="vertical-align: top"></canvas>
-        <span class="text-2x {{ current.temperature|tempcolor }}">
-                {{ current.temperature|round }}&deg;
-            </span>
-        <p class="card-text text-small">{{ forecast.summary }}</p>
-    </div>
-</div>
+<canvas id="weather-icon" width="96" height="96" style="vertical-align: top"></canvas>
+<span class="text-2x {{ current.temperature|tempcolor }}">
+    {{ current.temperature|round }}&deg;
+</span>
+<p class="card-text text-small">{{ forecast.summary }}</p>
 
 {% block extrascripts %}
     <script src="{{ asset('js/skycons.js') }}"></script>

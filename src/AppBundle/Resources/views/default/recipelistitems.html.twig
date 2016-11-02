@@ -5,7 +5,7 @@
                 <a href="#" class="recipeListLink" data-link="{{ recipe.link }}">
                     {{ recipe.title }}
                 </a>
-                <span class="pull-sm-right text-small">{{ recipe.savedOn|time_diff }}</span>
+                <span class="float-sm-right text-small">{{ recipe.savedOn|time_diff }}</span>
             </p>
             <hr>
         {% endfor %}

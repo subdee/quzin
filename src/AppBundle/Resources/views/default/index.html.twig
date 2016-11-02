@@ -2,22 +2,55 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-sm-3 text-sm-center" id="weather">
-            {{ include('@App/default/weather.html.twig') }}
+        <div class="col-sm-3 text-sm-center">
+            <div class="card">
+                <h4 class="card-header">
+                    {{ 'now'|localizeddate('medium', 'none') }}
+                </h4>
+                <div class="card-block" id="weather">
+                    {% include('@App/loader.html.twig') %}
+                </div>
+            </div>
         </div>
-        <div class="col-sm-6 text-sm-center" id="dailyrecipe">
-            {{ include('@App/default/dayrecipe.html.twig') }}
-        </div>
-        <div class="col-sm-3 text-sm-center" id="recipelist">
-            {{ include('@App/default/recipelist.html.twig') }}
+        <div class="col-sm-6 text-sm-center">
+            <div class="card">
+                <h4 class="card-header">
+                    {% trans %}Recipe of the day{% endtrans %}
+                </h4>
+                <div class="card-block" id="dailyrecipe">
+                    {% include('@App/loader.html.twig') %}
+                </div>
+            </div>
         </div>
         <div class="col-sm-3 text-sm-center">
+            <div class="card">
+                <h4 class="card-header">
+                    {% trans %}My recipes{% endtrans %}
+                </h4>
+                <div class="card-block" id="recipelist">
+                    {% include('@App/loader.html.twig') %}
+                </div>
+            </div>
         </div>
-        <div class="col-sm-6 text-sm-center text-small" id="seasonal">
-            {{ include('@App/default/seasonal.html.twig') }}
+        <div class="col-sm-6 text-sm-center text-small">
+            <div class="card">
+                <h4 class="card-header">
+                    {% trans %}Seasonal items{% endtrans %}
+                </h4>
+                <div class="card-block" id="seasonal">
+                    {% include('@App/loader.html.twig') %}
+                </div>
+            </div>
         </div>
-        <div class="col-sm-3 text-sm-center" id="shoppinglist">
-            {{ include('@App/default/shoppinglist.html.twig') }}
+        <div class="col-sm-3 text-sm-center">
+            <div class="card">
+                <h4 class="card-header">
+                    {% trans %}Shopping list{% endtrans %}
+                </h4>
+                <div class="card-block" id="shoppinglist">
+                    {% include('@App/loader.html.twig') %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -25,21 +58,24 @@
 {% block extrascripts %}
     <script>
         $(function () {
+            $('#weather').load('{{ path('weather') }}');
+            $('#dailyrecipe').load('{{ path('dailyRecipe') }}');
+            $('#recipelist').load('{{ path('recipeList') }}');
+            $('#seasonal').load('{{ path('seasonal') }}');
+            $('#shoppinglist').load('{{ path('shoppingList') }}');
+
+            setInterval(function () {
+                $('#shoppinglist').load('{{ path('shoppingList') }}')
+            }, 300000);
             setInterval(function () {
                 $('#weather').load('{{ path('weather') }}')
             }, 3600000);
             setInterval(function () {
-                $('#shoppinglist').load('{{ path('shoppingList') }}')
-            }, 300000);
-            var now = new Date();
-            var night = new Date(
-                    now.getFullYear(),
-                    now.getMonth(),
-                    now.getDate() + 1,
-                    0, 0, 0
-            );
-            var msTillMidnight = night.getTime() - now.getTime();
-            setTimeout('document.location.refresh()', msTillMidnight);
+                $('#dailyrecipe').load('{{ path('dailyRecipe') }}')
+            }, 21600000);
+            setInterval(function () {
+                $('#weather').load('{{ path('seasonal') }}')
+            }, 86400000);
         })
     </script>
 {% endblock %}

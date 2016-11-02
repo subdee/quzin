@@ -1,27 +1,20 @@
-<div class="card">
-    <h4 class="card-header">
-        {% trans %}Shopping list{% endtrans %}
-    </h4>
-    <div class="card-block">
-        <p class="card-text">
-            {% transchoice shoppingListCount %}
-            You have 1 item in your list|You have %shoppingListCount% items in your list
-            {% endtranschoice %}
-        </p>
-        <div>
-            <a class="btn btn-sm btn-primary btn-block card-link" data-toggle="modal" href="#shoppingListViewModal"
-               id="shoppingListViewLink">
-                {% trans %}See the list{% endtrans %}
-            </a>
-        </div>
-        <hr>
-        <div>
-            <a class="btn btn-sm btn-success btn-block card-link" data-toggle="modal" href="#shoppingListAddModal"
-               id="shoppingListAdd">
-                {% trans %}Add an item{% endtrans %}
-            </a>
-        </div>
-    </div>
+<p class="card-text">
+    {% transchoice shoppingListCount %}
+    You have 1 item in your list|You have %shoppingListCount% items in your list
+    {% endtranschoice %}
+</p>
+<div>
+    <a class="btn btn-sm btn-primary btn-block card-link" data-toggle="modal" href="#shoppingListViewModal"
+       id="shoppingListViewLink">
+        {% trans %}See the list{% endtrans %}
+    </a>
+</div>
+<hr>
+<div>
+    <a class="btn btn-sm btn-success btn-block card-link" data-toggle="modal" href="#shoppingListAddModal"
+       id="shoppingListAdd">
+        {% trans %}Add an item{% endtrans %}
+    </a>
 </div>
 
 

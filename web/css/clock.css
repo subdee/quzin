@@ -14,7 +14,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @-webkit-keyframes uil-clock-rotate1 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -25px);
@@ -31,7 +30,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @-moz-keyframes uil-clock-rotate1 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -25px);
@@ -48,7 +46,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @-ms-keyframes uil-clock-rotate1 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -25px);
@@ -65,7 +62,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @-moz-keyframes uil-clock-rotate1 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -25px);
@@ -82,7 +78,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @-webkit-keyframes uil-clock-rotate1 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -25px);
@@ -99,7 +94,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @-o-keyframes uil-clock-rotate1 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -25px);
@@ -116,7 +110,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @keyframes uil-clock-rotate1 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -25px);
@@ -133,7 +126,6 @@
         transform: rotate(360deg) translate(0, -25px);
     }
 }
-
 @-webkit-keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -150,7 +142,6 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 @-webkit-keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -167,7 +158,6 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 @-moz-keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -184,7 +174,6 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 @-ms-keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -201,7 +190,6 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 @-moz-keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -218,7 +206,6 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 @-webkit-keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -235,7 +222,6 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 @-o-keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -252,7 +238,6 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 @keyframes uil-clock-rotate2 {
     0% {
         -ms-transform: rotate(0deg) translate(0, -35px);
@@ -269,14 +254,12 @@
         transform: rotate(360deg) translate(0, -35px);
     }
 }
-
 .uil-clock-css {
-    background: white;
+    background: none;
     position: relative;
     width: 200px;
     height: 200px;
 }
-
 .uil-clock-css .clock {
     position: absolute;
     width: 160px;
@@ -287,7 +270,6 @@
     top: 20px;
     left: 20px;
 }
-
 .uil-clock-css .ptr1 {
     position: absolute;
     width: 10px;
@@ -302,7 +284,6 @@
     -o-animation: uil-clock-rotate1 5s linear infinite;
     animation: uil-clock-rotate1 5s linear infinite;
 }
-
 .uil-clock-css .ptr2 {
     position: absolute;
     width: 4px;

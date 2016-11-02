@@ -1,28 +1,21 @@
-<div class="card">
-    <h4 class="card-header">
-        {% trans %}Recipe of the day{% endtrans %}
-    </h4>
-    <div class="card-block">
-        <p class="card-text">{{ recipe.title }}</p>
-        <a class="btn btn-sm btn-warning card-link" href="#" id="recipeReload">
-            {% trans %}Find another{% endtrans %}
-        </a>
-        <a class="btn btn-sm btn-primary card-link" data-toggle="modal" href="#recipeModal" id="recipeLink"
-           data-link="{{ recipe.link }}">
-            {% trans %}See the recipe{% endtrans %}
-        </a>
-        <a class="btn btn-sm btn-outline-success card-link"
-           style="{% if recipe.isFavorite is same as(false) %}display: none;{% endif %}"
-           href="#" onclick="return false;" id="recipeSaved">
-            {% trans %}I have saved this{% endtrans %}
-        </a>
-        <a class="btn btn-sm btn-success card-link"
-           style="{% if recipe.isFavorite is same as(true) %}display: none;{% endif %}"
-           href="" id="recipeSave">
-            {% trans %}Save this recipe{% endtrans %}
-        </a>
-    </div>
-</div>
+<p class="card-text">{{ recipe.title }}</p>
+<a class="btn btn-sm btn-warning card-link" href="#" id="recipeReload">
+    {% trans %}Find another{% endtrans %}
+</a>
+<a class="btn btn-sm btn-primary card-link" data-toggle="modal" href="#recipeModal" id="recipeLink"
+   data-link="{{ recipe.link }}">
+    {% trans %}See the recipe{% endtrans %}
+</a>
+<a class="btn btn-sm btn-outline-success card-link"
+   style="{% if recipe.isFavorite is same as(false) %}display: none;{% endif %}"
+   href="#" onclick="return false;" id="recipeSaved">
+    {% trans %}I have saved this{% endtrans %}
+</a>
+<a class="btn btn-sm btn-success card-link"
+   style="{% if recipe.isFavorite is same as(true) %}display: none;{% endif %}"
+   href="" id="recipeSave">
+    {% trans %}Save this recipe{% endtrans %}
+</a>
 
 {% block extrascripts %}
     <script>

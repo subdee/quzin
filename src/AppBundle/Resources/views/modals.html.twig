@@ -22,12 +22,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div id="recipelistloader">
-                        <link rel="stylesheet" href="{{ asset('css/clock.css') }}">
-                        <div class='uil-clock-css' style='transform:scale(0.37);'>
-                            <div class="clock"></div>
-                            <div class="ptr1"></div>
-                            <div class="ptr2"></div>
-                        </div>
+                        {% include('@App/loader.html.twig') %}
                     </div>
                     <div id="recipeList"></div>
                 </div>
@@ -41,12 +36,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div id="shoppingListViewloader">
-                        <link rel="stylesheet" href="{{ asset('css/clock.css') }}">
-                        <div class='uil-clock-css' style='transform:scale(0.37);'>
-                            <div class="clock"></div>
-                            <div class="ptr1"></div>
-                            <div class="ptr2"></div>
-                        </div>
+                        {% include('@App/loader.html.twig') %}
                     </div>
                     <div id="shoppingListView"></div>
                 </div>
@@ -60,12 +50,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div id="shoppingListItemViewloader">
-                        <link rel="stylesheet" href="{{ asset('css/clock.css') }}">
-                        <div class='uil-clock-css' style='transform:scale(0.37);'>
-                            <div class="clock"></div>
-                            <div class="ptr1"></div>
-                            <div class="ptr2"></div>
-                        </div>
+                        {% include('@App/loader.html.twig') %}
                     </div>
                     <div id="shoppingListItemView"></div>
                 </div>
