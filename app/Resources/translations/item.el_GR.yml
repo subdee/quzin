@@ -1,6 +1,8 @@
-Item: Αντικείμενο
+Item: Είδος
 Name: Ονομασία
-Type: Είδος
+Type: Κατηγορία
 Image: Εικόνα
-Item List: Λίστα αντικειμένων
-Item Create: Νέο αντικείμενο
+Item List: Λίστα ειδών
+Item Create: Νέο είδος
+Item Type: Κατηγορία
+Image File: Εικόνα
