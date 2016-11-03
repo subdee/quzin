@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="device")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DeviceRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Device
 {
@@ -18,7 +19,6 @@ class Device
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\HasLifecycleCallbacks
      */
     private $id;
 
