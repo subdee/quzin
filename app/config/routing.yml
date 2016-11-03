@@ -26,5 +26,10 @@ shoppingList:
     resource: '@AppBundle/Controller/ShoppingListController.php'
     prefix: /api
 
+devices:
+    type:     rest
+    resource: '@AppBundle/Controller/DeviceController.php'
+    prefix: /api
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

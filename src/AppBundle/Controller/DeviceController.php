@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Device;
-use AppBundle\Entity\Item;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,14 +20,14 @@ class DeviceController extends FOSRestController
      *     nullable=false
      * )
      */
-    public function postItemsAction(Request $request)
+    public function postDevicesAction(Request $request)
     {
         $id = $request->request->get('id');
         if (!$id) {
             throw new BadRequestHttpException('ID is required');
         }
 
-        $device = $this->getDoctrine()->getRepository('AppBundle:Device')->findOneBy(['registration_id' => $id]);
+        $device = $this->getDoctrine()->getRepository('AppBundle:Device')->findOneBy(['registrationId' => $id]);
         if ($device) {
             throw new BadRequestHttpException('ID already exists');
         }
