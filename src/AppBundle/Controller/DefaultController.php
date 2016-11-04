@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -19,6 +20,22 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return $this->render('AppBundle:default:index.html.twig');
+    }
+
+    /**
+     * @Route("/weatherdate", name="weatherdate")
+     */
+    public function weatherDateAction()
+    {
+        $date = new \DateTime();
+
+        $formatter = \IntlDateFormatter::create(
+            $this->getParameter('locale'),
+            \IntlDateFormatter::MEDIUM,
+            \IntlDateFormatter::NONE
+        );
+
+        return new Response($formatter->format($date->getTimestamp()));
     }
 
     /**

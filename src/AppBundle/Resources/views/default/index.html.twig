@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-sm-3 text-sm-center">
             <div class="card">
-                <h4 class="card-header">
+                <h4 class="card-header" id="weatherdate">
                     {{ 'now'|localizeddate('medium', 'none') }}
                 </h4>
                 <div class="card-block" id="weather">
@@ -70,6 +70,9 @@
             setInterval(function () {
                 $('#weather').load('{{ path('weather') }}')
             }, 3600000);
+            setInterval(function () {
+                $('#weatherdate').load('{{ path('weatherdate') }}')
+            }, 3000);
             setInterval(function () {
                 $('#dailyrecipe').load('{{ path('dailyRecipe') }}')
             }, 21600000);
