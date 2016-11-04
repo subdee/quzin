@@ -20,20 +20,22 @@ class DeviceController extends FOSRestController
      *     nullable=false
      * )
      */
-    public function postDevicesAction(Request $request)
+    public function putDevicesAction(Request $request)
     {
         $id = $request->request->get('id');
         if (!$id) {
             throw new BadRequestHttpException('ID is required');
         }
 
-        $device = $this->getDoctrine()->getRepository('AppBundle:Device')->findOneBy(['registrationId' => $id]);
-        if ($device) {
-            throw new BadRequestHttpException('ID already exists');
+        $registrationId = $request->request->get('registrationId');
+        if (!$id) {
+            throw new BadRequestHttpException('Registration ID is required');
         }
 
-        $device = new Device();
-        $device->setRegistrationId($id);
+        $device = $this->getDoctrine()->getRepository('AppBundle:Device')->findOneBy(['deviceId' => $id]);
+
+        $device = $device ?: new Device();
+        $device->setRegistrationId($registrationId);
 
         $entityMgr = $this->getDoctrine()->getManager();
         $entityMgr->persist($device);

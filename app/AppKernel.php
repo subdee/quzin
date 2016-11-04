@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new Subdee\FcmBundle\FcmBundle(),
             new AppBundle\AppBundle(),
         ];
 

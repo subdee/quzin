@@ -25,7 +25,14 @@ class Device
     /**
      * @var string
      *
-     * @ORM\Column(name="registration_id", type="string", length=255, unique=true)
+     * @ORM\Column(name="device_id", type="string", length=255, unique=true)
+     */
+    private $deviceId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registration_id", type="string", length=255)
      */
     private $registrationId;
 
@@ -34,7 +41,7 @@ class Device
      *
      * @ORM\Column(name="added_on", type="integer")
      */
-    private $addedOn;
+    private $updatedOn;
 
 
     /**
@@ -52,7 +59,7 @@ class Device
      */
     public function __construct()
     {
-        $this->setAddedOn(time());
+        $this->setUpdatedOn(time());
     }
 
     /**
@@ -61,7 +68,7 @@ class Device
      */
     public function updateSavedOn()
     {
-        $this->setAddedOn(time());
+        $this->setUpdatedOn(time());
     }
 
     /**
@@ -91,13 +98,13 @@ class Device
     /**
      * Set addedOn
      *
-     * @param integer $addedOn
+     * @param integer $updatedOn
      *
      * @return Device
      */
-    public function setAddedOn($addedOn)
+    public function setUpdatedOn($updatedOn)
     {
-        $this->addedOn = $addedOn;
+        $this->updatedOn = $updatedOn;
 
         return $this;
     }
@@ -107,9 +114,25 @@ class Device
      *
      * @return int
      */
-    public function getAddedOn()
+    public function getUpdatedOn()
     {
-        return $this->addedOn;
+        return $this->updatedOn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeviceId()
+    {
+        return $this->deviceId;
+    }
+
+    /**
+     * @param string $deviceId
+     */
+    public function setDeviceId($deviceId)
+    {
+        $this->deviceId = $deviceId;
     }
 }
 

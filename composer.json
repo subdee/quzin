@@ -37,7 +37,8 @@
     "sonata-project/doctrine-orm-admin-bundle": "^3.1",
     "jms/serializer-bundle": "^1.1",
     "friendsofsymfony/jsrouting-bundle": "^1.6",
-    "nelmio/cors-bundle": "^1.4"
+    "nelmio/cors-bundle": "^1.4",
+    "paragraph1/php-fcm": "*"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",

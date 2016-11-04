@@ -1,0 +1,4 @@
+services:
+    fcm:
+        class: Subdee\FcmBundle\Services\PushNotificationService
+        arguments: ['@service_container']
