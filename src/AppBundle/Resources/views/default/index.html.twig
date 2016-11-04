@@ -1,8 +1,8 @@
 {% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-sm-3 text-sm-center">
+    <div class="row text-sm-center">
+        <div class="card-columns">
             <div class="card">
                 <h4 class="card-header" id="weatherdate">
                     {{ 'now'|localizeddate('medium', 'none') }}
@@ -11,28 +11,14 @@
                     {% include('@App/loader.html.twig') %}
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6 text-sm-center">
             <div class="card">
                 <h4 class="card-header">
-                    {% trans %}Recipe of the day{% endtrans %}
+                    {% trans %}Shopping list{% endtrans %}
                 </h4>
-                <div class="card-block" id="dailyrecipe">
+                <div class="card-block" id="shoppinglist">
                     {% include('@App/loader.html.twig') %}
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3 text-sm-center">
-            <div class="card">
-                <h4 class="card-header">
-                    {% trans %}My recipes{% endtrans %}
-                </h4>
-                <div class="card-block" id="recipelist">
-                    {% include('@App/loader.html.twig') %}
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 text-sm-center text-small">
             <div class="card">
                 <h4 class="card-header">
                     {% trans %}Seasonal items{% endtrans %}
@@ -41,13 +27,27 @@
                     {% include('@App/loader.html.twig') %}
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3 text-sm-center">
             <div class="card">
                 <h4 class="card-header">
-                    {% trans %}Shopping list{% endtrans %}
+                    {% trans %}Recipe of the day{% endtrans %}
                 </h4>
-                <div class="card-block" id="shoppinglist">
+                <div class="card-block" id="dailyrecipe">
+                    {% include('@App/loader.html.twig') %}
+                </div>
+            </div>
+            <div class="card">
+                <h4 class="card-header">
+                    {% trans %}My recipes{% endtrans %}
+                </h4>
+                <div class="card-block" id="recipelist">
+                    {% include('@App/loader.html.twig') %}
+                </div>
+            </div>
+            <div class="card">
+                <h4 class="card-header">
+                    {% trans %}Recipe search{% endtrans %}
+                </h4>
+                <div class="card-block" id="recipesearch">
                     {% include('@App/loader.html.twig') %}
                 </div>
             </div>
@@ -63,6 +63,7 @@
             $('#recipelist').load('{{ path('recipeList') }}');
             $('#seasonal').load('{{ path('seasonal') }}');
             $('#shoppinglist').load('{{ path('shoppingList') }}');
+            $('#recipesearch').load('{{ path('recipeSearch') }}');
 
             setInterval(function () {
                 $('#shoppinglist').load('{{ path('shoppingList') }}')
@@ -72,7 +73,7 @@
             }, 3600000);
             setInterval(function () {
                 $('#weatherdate').load('{{ path('weatherdate') }}')
-            }, 3000);
+            }, 3600000);
             setInterval(function () {
                 $('#dailyrecipe').load('{{ path('dailyRecipe') }}')
             }, 21600000);

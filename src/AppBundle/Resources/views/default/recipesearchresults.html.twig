@@ -1,0 +1,56 @@
+<div class="container">
+    {% for result in results %}
+        <div class="row">
+            <div class="col-xs-10">
+                <p>{{ result.htmlTitle|raw }}</p>
+            </div>
+            <div class="col-xs-1">
+                <a class="btn btn-sm btn-primary recipe-view" data-link="{{ result.link }}" href="#">
+                    {% trans %}View{% endtrans %}
+                </a>
+            </div>
+            <div class="col-xs-1">
+                <a class="btn btn-sm btn-success recipe-save" data-link="{{ result.link }}"
+                   data-title="{{ result.title }}" href="#">
+                    {% trans %}Save{% endtrans %}
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% block extrascripts %}
+    <script>
+        $(function () {
+            $('#recipeSearchViewModal').on('show.bs.modal', function (e) {
+                $('#recipeSearchViewFrame').on('load', (function () {
+                    $('#recipeSearchViewloader').hide();
+                    $('#recipeSearchViewFrame').show();
+                }));
+            });
+            $('a.recipe-view').on('click', function () {
+                var link = $(this).data('link');
+                $('#recipeSearchViewFrame').attr('src', link);
+                $('#recipeSearchViewModal').modal('show');
+                $('#recipeSearchViewFrame').hide();
+                $('#recipeSearchViewloader').show();
+            });
+            $('a.recipe-save').on('click', function () {
+                var link = $(this).data('link');
+                var title = $(this).data('title');
+                $.ajax({
+                    url: '{{ path('saveRecipe') }}',
+                    method: 'post',
+                    data: {title: title, link: link},
+                    success: function (data) {
+                        if (data && data.success) {
+                            $('#recipelist').load('{{ path('recipeList') }}')
+                        }
+                    }
+                });
+
+                return false;
+            });
+        })
+    </script>
+{% endblock %}

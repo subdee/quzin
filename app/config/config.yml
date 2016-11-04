@@ -95,4 +95,8 @@ nelmio_cors:
             max_age: 3600
 
 fcm:
-    api_key: AIzaSyC4kDelotzwM_L8VxbZ68InOIIFa3_epE4
+    push:
+        api_key: AIzaSyC4kDelotzwM_L8VxbZ68InOIIFa3_epE4
+    search:
+        api_key: AIzaSyC4kDelotzwM_L8VxbZ68InOIIFa3_epE4
+        search_id: '006492090401638723872:ovfp61qkljo'

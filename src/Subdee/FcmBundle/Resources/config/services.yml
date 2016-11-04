@@ -1,4 +1,7 @@
 services:
-    fcm:
+    fcm_push:
         class: Subdee\FcmBundle\Services\PushNotificationService
+        arguments: ['@service_container']
+    fcm_search:
+        class: Subdee\FcmBundle\Services\CustomSearchService
         arguments: ['@service_container']

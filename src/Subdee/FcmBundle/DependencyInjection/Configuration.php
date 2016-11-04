@@ -19,7 +19,20 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('fcm');
-        $rootNode->children()->scalarNode('api_key')->end();
+        $rootNode
+            ->children()
+            ->arrayNode('push')
+            ->children()
+            ->scalarNode('api_key')->end()
+            ->end()
+            ->end()
+            ->arrayNode('search')
+            ->children()
+            ->scalarNode('api_key')->end()
+            ->scalarNode('search_id')->end()
+            ->end()
+            ->end()
+            ->end();
 
         return $treeBuilder;
     }

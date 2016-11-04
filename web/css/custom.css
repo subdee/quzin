@@ -1,6 +1,7 @@
 html, body {
     background-color: #ECECEA;
     color: #3B3738;
+    font-size: 11px;
 }
 
 .background {
@@ -76,4 +77,8 @@ html, body {
 .item-to-add.added {
     background-color: rgba(200, 46, 11, 0.2);
     border-radius: 10px;
+}
+
+h4 {
+    font-size: 13px;
 }

@@ -16,7 +16,7 @@ class PushNotificationService
 
     public function __construct(ContainerInterface $container)
     {
-        $this->apiKey = $container->getParameter('fcm.api_key');
+        $this->apiKey = $container->getParameter('fcm.push.api_key');
     }
 
     public function sendNotification(string $title, string $body, array $devices, int $count = 1)

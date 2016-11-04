@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Item;
 use AppBundle\Entity\Recipe;
+use AppBundle\Entity\RecipeSearch;
 use AppBundle\Entity\ShoppingList;
 use Lcn\WeatherForecastBundle\Service\Forecast;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -169,6 +171,36 @@ class DefaultController extends Controller
         $entityManager->flush();
 
         return new JsonResponse(['success' => true]);
+    }
+
+    /**
+     * @Route("/recipeSearch", name="recipeSearch")
+     * @return Response
+     */
+    public function recipeSearchAction()
+    {
+        return $this->render('@App/default/recipesearch.html.twig');
+    }
+
+    /**
+     * @Route("/searchRecipe", name="searchRecipe")
+     * @param Request $request
+     * @return Response
+     */
+    public function searchRecipeAction(Request $request)
+    {
+        $results = [];
+        if ($request->request->has('query')) {
+            $query = $request->request->get('query');
+
+            $searchService = $this->get('fcm_search');
+            $results = $searchService->search($query);
+        }
+
+        return new JsonResponse([
+            'success' => true,
+            'content' => $this->renderView('@App/default/recipesearchresults.html.twig', ['results' => $results])
+        ]);
     }
 
     private function getWeather()

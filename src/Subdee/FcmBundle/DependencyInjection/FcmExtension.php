@@ -22,7 +22,9 @@ class FcmExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('fcm.api_key', $config['api_key']);
+        $container->setParameter('fcm.push.api_key', $config['push']['api_key']);
+        $container->setParameter('fcm.search.api_key', $config['search']['api_key']);
+        $container->setParameter('fcm.search.search_id', $config['search']['search_id']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');

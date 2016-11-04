@@ -1,15 +1,17 @@
 <div class="container">
-    <div class="row">
-        {% for recipe in recipes %}
-            <p>
+    {% for recipe in recipes %}
+        <div class="row">
+            <div class="col-xs-10">
                 <a href="#" class="recipeListLink" data-link="{{ recipe.link }}">
                     {{ recipe.title }}
                 </a>
+            </div>
+            <div class="col-xs-2">
                 <span class="float-sm-right text-small">{{ recipe.savedOn|time_diff }}</span>
-            </p>
-            <hr>
-        {% endfor %}
-    </div>
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
 </div>
 
 {% block extrascripts %}

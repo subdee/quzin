@@ -1,0 +1,38 @@
+<form action="{{ path('searchRecipe') }}" id="recipe-search-form">
+    <p class="card-text">
+    <div class="form-group">
+        <label for="searchTerm">{% trans %}Search for a recipe{% endtrans %}</label>
+        <input type="search" class="form-control" id="searchTerm" aria-describedby="searchTerm"
+               placeholder="{% trans %}i.e. burger{% endtrans %}">
+    </div>
+    </p>
+    <button class="btn btn-sm btn-primary card-link" href="#" type="submit">
+        {% trans %}Search{% endtrans %}
+    </button>
+</form>
+
+{% block extrascripts %}
+    <script>
+        $(function () {
+            $('form#recipe-search-form').on('submit', function (e) {
+                e.preventDefault();
+
+                var $modal = $('#recipeSearchModal');
+                $modal.modal('show');
+
+                var url = $(this).attr('action');
+                var query = $(this).find('input#searchTerm').val();
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: {query: query},
+                    success: function (data) {
+                        if (data.success) {
+                            $modal.find('.modal-body').html(data.content);
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}

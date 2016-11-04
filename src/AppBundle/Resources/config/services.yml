@@ -51,6 +51,6 @@ services:
       - {name: doctrine.event_listener, event: preUpdate}
   shoppinglistlistener:
     class: AppBundle\Services\ShoppingListListener
-    arguments: ['@fcm', '@translator']
+    arguments: ['@fcm_push', '@translator']
     tags:
       - {name: doctrine.event_listener, event: postPersist}
