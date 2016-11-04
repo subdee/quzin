@@ -35,6 +35,7 @@ class DeviceController extends FOSRestController
         $device = $this->getDoctrine()->getRepository('AppBundle:Device')->findOneBy(['deviceId' => $id]);
 
         $device = $device ?: new Device();
+        $device->setDeviceId($id);
         $device->setRegistrationId($registrationId);
 
         $entityMgr = $this->getDoctrine()->getManager();
