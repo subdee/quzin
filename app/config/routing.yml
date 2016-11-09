@@ -35,5 +35,20 @@ devices:
     resource: '@AppBundle/Controller/DeviceController.php'
     prefix: /api
 
+weather:
+    type:     rest
+    resource: '@AppBundle/Controller/WeatherController.php'
+    prefix: /api
+
+dailyrecipe:
+    type:     rest
+    resource: '@AppBundle/Controller/DailyRecipeController.php'
+    prefix: /api
+
+recipes:
+    type:     rest
+    resource: '@AppBundle/Controller/RecipeController.php'
+    prefix: /api
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
