@@ -50,5 +50,10 @@ recipes:
     resource: '@AppBundle/Controller/RecipeController.php'
     prefix: /api
 
+itemTypes:
+    type:     rest
+    resource: '@AppBundle/Controller/ItemTypeController.php'
+    prefix: /api
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
