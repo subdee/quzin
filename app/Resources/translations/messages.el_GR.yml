@@ -16,6 +16,13 @@ Herbs: Μυρωδικά
 Herb: Μυρωδικό
 Nuts: Ξηροί καρποί
 Nut: Ξηρός καρπός
+Dairy product: Γαλακτοκομικό
+Dairy products: Γαλακτοκομικά
+Meat: Κρεατικό
+Meats: Κρεατικά
+Other: Διάφορα
+Bathroom product: Είδος μπάνιου
+Bathroom products: Είδη μπάνιου
 Unknown: Άγνωστο
 '{0} You have no recipes|{1} You have one recipe|]1,Inf[ You have %recipeCount% recipes': '{0} Δεν έχεις συνταγές|{1} Έχεις μία συνταγή|]1,Inf[ Έχεις %recipeCount% συνταγές'
 Shopping list: Λίστα για τα ψώνια
