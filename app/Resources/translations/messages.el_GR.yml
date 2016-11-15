@@ -23,6 +23,10 @@ Meats: Κρεατικά
 Other: Διάφορα
 Bathroom product: Είδος μπάνιου
 Bathroom products: Είδη μπάνιου
+Medicine: Είδος φαρμακείου
+Medicines: Είδη φαρμακείου
+Bakery product: Είδος φούρνου
+Bakery products: Είδη φούρνου
 Unknown: Άγνωστο
 '{0} You have no recipes|{1} You have one recipe|]1,Inf[ You have %recipeCount% recipes': '{0} Δεν έχεις συνταγές|{1} Έχεις μία συνταγή|]1,Inf[ Έχεις %recipeCount% συνταγές'
 Shopping list: Λίστα για τα ψώνια
